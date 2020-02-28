@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Football
+namespace Repka
 {
-    class GrandPa : Human
+    class GrandPa : Character
     {
         public GrandPa(string name, int damage)
             : base(name, damage) { }

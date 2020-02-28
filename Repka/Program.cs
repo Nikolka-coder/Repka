@@ -1,5 +1,4 @@
-﻿using Football;
-using Football.Entities;
+﻿using Repka;
 using System;
 
 namespace Turnip
@@ -12,7 +11,7 @@ namespace Turnip
             
             GrandPa grandpa = new GrandPa("Дед", Randomizer(33, 40));
             Message mes =  grandpa.Create;
-            Repka rep = new Repka(100);
+            Repka.Entities.Repka rep = new Repka.Entities.Repka(100);
             mes += grandpa.DoSomething;
             rep.HP -= grandpa.Damage;
             mes += grandpa.CallHelp;

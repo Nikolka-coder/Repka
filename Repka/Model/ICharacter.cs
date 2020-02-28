@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Football
+namespace Repka
 {
-    interface IAnimal
+    interface ICharacter
     {
-          void DoSomething();
-          void CallHelp();
+        void DoSomething();
+        void CallHelp();
     }
 }
