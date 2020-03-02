@@ -23,5 +23,5 @@ namespace Repka
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"{Name} за Жучку, Жучка за внучку, внучка за бабку, бабка за дедку, дедка за репку: тянут-потянут - Вытащили репку");
         }
-    }
+   }
 }

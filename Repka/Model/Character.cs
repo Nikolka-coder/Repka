@@ -1,4 +1,6 @@
-﻿namespace Repka
+﻿using System.Collections.Generic;
+
+namespace Repka
 {
     abstract class Character : ICharacter
     {
@@ -11,5 +13,10 @@
         }
         public abstract void DoSomething();
         public abstract void CallHelp();
+        public ICollection<Character> Characters { get; set; }
+        public Character()
+        {
+            Characters = new List<Character>();
+        }
     }
 }
