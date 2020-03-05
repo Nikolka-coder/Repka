@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Repka
 {
-    interface ICharacter
+    public interface ICharacter
     {
-        void DoSomething();
-        void CallHelp();
+        string Name { get; set; }
+        int Damage { get; set; }
     }
 }

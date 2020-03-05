@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Repka.Entities
 {
-    sealed class Repka
+    public sealed class Repa
     {
         public int HP { get; set; }
-        public Repka(int hp)
+        public Repa(int hp)
         {
             HP = hp;
         }
