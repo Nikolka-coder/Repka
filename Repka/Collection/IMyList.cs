@@ -7,10 +7,12 @@ namespace Repka.Services
 {
     interface IMyList<T> : IEnumerable<T>
     {
-        public void Add(T item);
-       // public void Clear();
-       // public bool Remove(T item);
-        public int Count { get; }
-        public T this [int index]{ get; set;}
+        void AddToLast(T value);
+        void AddToFirst(T value);
+        void Add(T value);
+        void RemoveFirst();
+        void RemoveLast();
+        bool Remove(T value);
+        void Clear();
     }
 }

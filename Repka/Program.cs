@@ -9,8 +9,8 @@ namespace Turnip
     {
         static void Main(string[] args)
         {
-            Random rnd = new Random();
-            MyList<ICharacter> list = new MyList<ICharacter>();
+            var rnd = new Random();
+            var list = new MyList<ICharacter>();
             list.Add(new GrandPa("Дед", rnd.Next(33, 40)));
             list.Add(new GrandMa("Бабка", rnd.Next(24, 30)));
             list.Add(new GrandDaughter("Внучка", rnd.Next(14, 19)));
@@ -18,7 +18,7 @@ namespace Turnip
             list.Add(new Cat("Мурка", rnd.Next(7, 14)));
             list.Add(new Mouse("Мышка", rnd.Next(1, 5)));
             var repa = new Repa(100);
-            FaryTale fary = new FaryTale(list, repa);
+            var fary = new FaryTale(list, repa);
             fary.Messages += DisplayMessage;
             fary.Play();   
         }

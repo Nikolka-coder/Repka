@@ -1,56 +1,147 @@
-﻿using System.Collections;
+﻿using Repka.Collection;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Repka.Services
 {
     public class MyList<T> : IMyList<T>
     {
-        T[] array = null;
-        public MyList()
+        public Node<T> Head { get; private set; }
+        public Node<T> Tail { get; private set; }
+
+        public int Count { get; private set; }
+
+        public void Add(T value) => AddToLast(value);
+
+
+        public void AddToFirst(T value)
         {
-            array = new T[0];
+            Node<T> temp = Head;
+            Head = new Node<T>(value)
+            {
+                Next = temp
+            };
+
+            if (Count == 0)
+            {
+                Tail = Head;
+            }
+            else
+            {
+                temp.Previous = Head;
+            }
+            Count++;
         }
-        public int Count
+
+        public void AddToLast(T value)
         {
-            get { return array.Length; }
+            Node<T> node = new Node<T>(value);
+            if (Count == 0)
+            {
+                Head = node;
+            }
+            else
+            {
+                Tail.Next = node;
+                node.Previous = Tail;
+            }
+            Tail = node;
+            Count++;
+        }
+
+        public void Clear()
+        {
+            Count = 0;
+            Head = null;
+            Tail = null;
+        }
+
+
+
+        public bool Remove(T value)
+        {
+            Node<T> previous = null;
+            Node<T> current = Head;
+            while (current != null)
+            {
+
+                if (current.Value.Equals(value))
+                {
+                    if (previous != null)
+                    {
+                        previous.Next = current.Next;
+                        if (current.Next == null)
+                        {
+                            Tail = previous;
+                        }
+                        else
+                        {
+
+                            current.Next.Previous = previous;
+                        }
+                        --Count;
+                    }
+                    else
+                    {
+                        RemoveFirst();
+                    }
+
+                    return true;
+                }
+
+                previous = current;
+                current = current.Next;
+            }
+            return false;
+
+        }
+
+        public void RemoveFirst()
+        {
+            if (Count != 0)
+            {
+                Head = Head.Next;
+                --Count;
+                if (Count == 0)
+                {
+                    Tail = null;
+                }
+                else
+                {
+                    Head.Previous = null;
+                }
+            }
+        }
+
+        public void RemoveLast()
+        {
+            if (Count != 0)
+            {
+
+                Tail = Tail.Previous;
+                --Count;
+                if (Count == 0)
+                {
+                    Head = null;
+                }
+                else
+                {
+                    Tail.Next = null;
+                }
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return GetEnumerator();
-        }
-        public void Add(T item)
-        {
-            T[] arr = new T[array.Length + 1];
-            array.CopyTo(arr, 0);
-            arr[array.Length] = item;
-            array = arr;
-        }
-       
-        public T this[int index]
-        {
-            get { return array[index]; }
-            set { array[index] = value; }
-        }
-        int position = -1;
-        public void Reset()
-        {
-            position = -1;
+            return new MyList<T>().GetEnumerator();
         }
         public IEnumerator<T> GetEnumerator()
         {
-            while (true)
+            Node<T> current = Head;
+            while (current != null)
             {
-                if (position < array.Length - 1)
-                {
-                    position++;
-                    yield return array[position];
-                }
-                else
-                {
-                    Reset();
-                    yield break;
-                }
+                yield return current.Value;
+                current = current.Next;
             }
         }
     }
